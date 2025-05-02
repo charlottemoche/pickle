@@ -40,7 +40,7 @@ export default function Form() {
           onClick={handleOffer}
           className="mt-3 w-full bg-brand text-white px-4 py-2 rounded"
         >
-          Send offer
+          Propose time
         </button>
       </div>
 
