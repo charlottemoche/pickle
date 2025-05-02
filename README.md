@@ -1,5 +1,5 @@
-run npm install
+run `npm install`
 
-npm run dev to spin up project
+`npm run dev` to spin up project
 
 click "decline" to open modal
