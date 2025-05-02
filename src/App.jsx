@@ -1,18 +1,21 @@
 import React, { useState, useContext } from 'react';
 import Modal from './components/Modal';
-import { UserContext } from './UserContext';
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  const user = useContext(UserContext);
+  const sender = {
+    name: "Charlotte",
+    id: 123,
+    avatar: "../src/img/1722287477960.jpeg"
+  }
 
   const handleDecline = () => setShowModal(true);
   const handleAccept = () => console.log("Offer accepted");
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <img src={user.avatar} alt="User Avatar" className="w-20 h-20 rounded-full mb-2" />
-      <h1 className="text-xl font-medium mb-4">{user.name} sent you an offer</h1>
+      <img src={sender.avatar} alt="Sender Avatar" className="w-20 h-20 rounded-full mb-2" />
+      <h1 className="text-xl font-medium mb-4">{sender.name} sent you an offer</h1>
       <div className="flex space-x-4">
         <button
           onClick={handleAccept}
@@ -28,7 +31,7 @@ export default function App() {
         </button>
       </div>
 
-      {showModal && <Modal onClose={() => setShowModal(false)} />}
+      {showModal && <Modal onClose={() => setShowModal(false)} sender={sender} />}
     </div>
   );
 }
