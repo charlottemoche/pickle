@@ -119,12 +119,15 @@ function Form ({ onSubmitSuccess, sender }) {
 
       {action === 'decline' && (
         <div>
-          <label
-            htmlFor='feedback'
-            className='block mb-2 text-sm text-gray-700'
-          >
-            Why are you declining?
-          </label>
+          <div className="flex gap-1 items-center text-sm mb-2">
+            <label
+              htmlFor='feedback'
+              className='block text-gray-700'
+            >
+              Why are you declining?
+            </label>
+            <div className="text-gray-400 inline-flex">(optional)</div>
+          </div>
           <input
             type='text'
             id='feedback'
