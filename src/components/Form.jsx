@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Form({ onSubmitSuccess, sender }) {
+function Form ({ onSubmitSuccess, sender }) {
   const [feedback, setFeedback] = useState('')
   const [proposedTime, setProposedTime] = useState('')
   const [action, setAction] = useState('none')
@@ -71,18 +71,20 @@ function Form({ onSubmitSuccess, sender }) {
           type='button'
           onClick={() => setAction('offer')}
           className={`w-full px-4 py-2 rounded ${
-            action === 'offer' ? 'bg-black text-white' : 'bg-brand text-white'
+            action === 'offer'
+              ? 'bg-black text-white shadow-2xl'
+              : 'bg-brand text-white'
           }`}
           disabled={action === 'offer'}
         >
-          Offer a new time
+          Offer new time
         </button>
         <button
           type='button'
           onClick={() => setAction('decline')}
           className={`w-full px-4 py-2 rounded ${
             action === 'decline'
-              ? 'bg-black text-white'
+              ? 'bg-black text-white shadow-2xl'
               : 'bg-red-600 text-white'
           }`}
           disabled={action === 'decline'}
@@ -93,9 +95,15 @@ function Form({ onSubmitSuccess, sender }) {
 
       {action === 'offer' && (
         <div>
-          <h3 className='font-semibold text-gray-700 mb-2'>Offer a new time</h3>
+          <label
+            htmlFor='proposedTime'
+            className='block mb-2 text-sm text-gray-700'
+          >
+            Select time
+          </label>
           <input
             type='datetime-local'
+            id='proposedTime'
             value={proposedTime}
             onChange={e => setProposedTime(e.target.value)}
             className='w-full border border-gray-300 rounded px-3 py-2'
@@ -111,12 +119,15 @@ function Form({ onSubmitSuccess, sender }) {
 
       {action === 'decline' && (
         <div>
-          <h3 className='font-semibold text-gray-700 mb-2'>
+          <label
+            htmlFor='feedback'
+            className='block mb-2 text-sm text-gray-700'
+          >
             Why are you declining?
-          </h3>
-          <p className='text-sm text-gray-500 mb-2'>(Optional)</p>
+          </label>
           <input
             type='text'
+            id='feedback'
             value={feedback}
             onChange={e => setFeedback(e.target.value)}
             className='w-full border border-gray-300 rounded px-3 py-2'
@@ -126,7 +137,7 @@ function Form({ onSubmitSuccess, sender }) {
             onClick={handleDecline}
             className='mt-3 w-full bg-red-600 text-white px-4 py-2 rounded'
           >
-            Decline offer
+            Decline
           </button>
         </div>
       )}
