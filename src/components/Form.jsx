@@ -10,7 +10,7 @@ function Form({ onSubmitSuccess, sender }) {
     if (proposedTime) {
       try {
         const res = await fetch(
-          'https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback',
+          `${import.meta.env.VITE_PICKLE_API_URL}/feedback`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,7 @@ function Form({ onSubmitSuccess, sender }) {
     if (feedback) {
       try {
         const res = await fetch(
-          'https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback',
+          `${import.meta.env.VITE_PICKLE_API_URL}/feedback`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
