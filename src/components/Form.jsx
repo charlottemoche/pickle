@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Form ({ onSubmitSuccess }) {
+function Form({ onSubmitSuccess, sender }) {
   const [feedback, setFeedback] = useState('')
   const [proposedTime, setProposedTime] = useState('')
   const [action, setAction] = useState('none')
@@ -20,7 +20,10 @@ function Form ({ onSubmitSuccess }) {
         const data = await res.json()
         console.log('Server response:', data)
         setProposedTime('')
-        onSubmitSuccess()
+        onSubmitSuccess({
+          title: 'Offer sent!',
+          body: `We'll let you know when ${sender.name} responds.`
+        })
       } catch (err) {
         console.error('Error submitting proposed time:', err)
       }
@@ -45,18 +48,24 @@ function Form ({ onSubmitSuccess }) {
         const data = await res.json()
         console.log('Server response:', data)
         setFeedback('')
-        onSubmitSuccess(feedback)
+        onSubmitSuccess({
+          title: 'Offer declined',
+          body: 'Thanks for your feedback.'
+        })
       } catch (err) {
         console.error('Error submitting feedback:', err)
       }
     } else {
       console.log('No feedback provided.')
-      onSubmitSuccess('')
+      onSubmitSuccess({
+        title: 'Offer declined',
+        body: 'You\'re all set.'
+      })
     }
   }
 
   return (
-    <form className='my-6 space-y-6'>
+    <form className='mt-6 space-y-6'>
       <div className='flex gap-4 mb-4'>
         <button
           type='button'

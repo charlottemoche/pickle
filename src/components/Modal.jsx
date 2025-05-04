@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import Form from './Form'
 import Message from './Message'
 import Card from './Card'
-import DeclineMessage from './DeclineMessage'
+import FormMessage from './FormMessage'
 
-function Modal ({ sender, onClose }) {
+function Modal({ sender, onClose }) {
   const [submitted, setSubmitted] = useState(false)
-  const [feedback, setFeedback] = useState('')
+  const [message, setMessage] = useState(null)
+
+  const handleFormSubmit = (messageData) => {
+    setSubmitted(true)
+    setMessage(messageData)
+  }
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
@@ -26,16 +31,11 @@ function Modal ({ sender, onClose }) {
         />
 
         {submitted ? (
-          <DeclineMessage feedback={feedback} />
+          <FormMessage message={message} />
         ) : (
           <>
             <Message sender={sender} />
-            <Form
-              onSubmitSuccess={(feedback) => {
-                setSubmitted(true)
-                setFeedback(feedback)
-              }}
-            />
+            <Form onSubmitSuccess={handleFormSubmit} sender={sender} />
           </>
         )}
       </div>
