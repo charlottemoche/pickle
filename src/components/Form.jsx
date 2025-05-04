@@ -66,7 +66,7 @@ function Form({ onSubmitSuccess, sender }) {
 
   return (
     <form className='mt-6 space-y-6'>
-      <div className='flex gap-4 mb-4'>
+      <div className='flex gap-4'>
         <button
           type='button'
           onClick={() => setAction('offer')}
