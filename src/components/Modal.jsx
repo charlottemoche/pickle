@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import Form from './Form'
 import Message from './Message'
 import Card from './Card'
-import Thanks from './Thanks'
+import DeclineMessage from './DeclineMessage'
 
 function Modal ({ sender, onClose }) {
   const [submitted, setSubmitted] = useState(false)
+  const [feedback, setFeedback] = useState('')
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
@@ -25,11 +26,16 @@ function Modal ({ sender, onClose }) {
         />
 
         {submitted ? (
-          <Thanks />
+          <DeclineMessage feedback={feedback} />
         ) : (
           <>
-            <Message sender={sender} />{' '}
-            <Form onSubmitSuccess={() => setSubmitted(true)} />{' '}
+            <Message sender={sender} />
+            <Form
+              onSubmitSuccess={(feedback) => {
+                setSubmitted(true)
+                setFeedback(feedback)
+              }}
+            />
           </>
         )}
       </div>

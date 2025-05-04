@@ -9,11 +9,14 @@ function Form ({ onSubmitSuccess }) {
     e.preventDefault()
     if (proposedTime) {
       try {
-        const res = await fetch('https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ proposedTime })
-        })
+        const res = await fetch(
+          'https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ proposedTime })
+          }
+        )
         const data = await res.json()
         console.log('Server response:', data)
         setProposedTime('')
@@ -28,18 +31,27 @@ function Form ({ onSubmitSuccess }) {
 
   const handleDecline = async e => {
     e.preventDefault()
-    try {
-      const res = await fetch('https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ feedback })
-      })
-      const data = await res.json()
-      console.log('Server response:', data)
-      setFeedback('')
-      onSubmitSuccess()
-    } catch (err) {
-      console.error('Error submitting feedback:', err)
+
+    if (feedback) {
+      try {
+        const res = await fetch(
+          'https://rqpecv6vpc.execute-api.us-east-2.amazonaws.com/prod/feedback',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ feedback })
+          }
+        )
+        const data = await res.json()
+        console.log('Server response:', data)
+        setFeedback('')
+        onSubmitSuccess(feedback)
+      } catch (err) {
+        console.error('Error submitting feedback:', err)
+      }
+    } else {
+      console.log('No feedback provided.')
+      onSubmitSuccess('')
     }
   }
 
