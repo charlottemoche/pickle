@@ -59,7 +59,7 @@ function Form ({ onSubmitSuccess, sender }) {
       console.log('No feedback provided.')
       onSubmitSuccess({
         title: 'Offer declined',
-        body: 'You\'re all set.'
+        body: "You're all set."
       })
     }
   }
@@ -119,15 +119,13 @@ function Form ({ onSubmitSuccess, sender }) {
 
       {action === 'decline' && (
         <div>
-          <div className="flex gap-1 items-center text-sm mb-2">
-            <label
-              htmlFor='feedback'
-              className='block text-gray-700'
-            >
+          <div className='flex gap-1 items-center text-sm mb-2'>
+            <label htmlFor='feedback' className='block text-gray-700'>
               Why are you declining?
             </label>
-            <div className="text-gray-400 inline-flex">(optional)</div>
+            <div className='text-gray-400 inline-flex'>(optional)</div>
           </div>
+          {/* Right now I am making this an input but ideally it'd be a radio so the answers could be tracked to get data on why people are declining */}
           <input
             type='text'
             id='feedback'
