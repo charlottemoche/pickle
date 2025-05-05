@@ -1,3 +1,5 @@
+https://www.loom.com/share/afcf90fd5c4044e094b18e9b36ea62d1?sid=16da9b10-169d-4fae-ac65-37409b2a475c
+
 run `npm install`
 
 `npm run dev` to spin up project
