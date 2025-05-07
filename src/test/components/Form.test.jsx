@@ -1,4 +1,4 @@
-import { vi } from 'vitest'
+import { vi, describe, test, beforeEach, expect } from 'vitest'
 import '@testing-library/jest-dom'
 import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import Form from '../../components/Form'
@@ -106,7 +106,7 @@ describe('Form Component', () => {
     })
   })
 
-  it('submitting decline without feedback sends empty body', async () => {
+  test('submitting decline without feedback sends empty body', async () => {
     render(<Form onSubmitSuccess={mockOnSubmitSuccess} sender={sender} />)
 
     fireEvent.click(screen.getByText('Decline offer'))
